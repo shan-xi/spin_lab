@@ -78,7 +78,7 @@ public class PayoutRequest {
 
         Base64.Encoder base64Encoder = Base64.getEncoder().withoutPadding();
         encData = base64Encoder.encodeToString(encValue);
-        System.out.println("ENCDATA : " + encData);
         System.out.println("STRING : " + encString);
+        System.out.println("ENCDATA : " + encData);
     }
 }

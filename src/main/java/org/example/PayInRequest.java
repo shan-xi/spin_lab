@@ -44,7 +44,7 @@ public class PayInRequest {
         String input  = allFields.toString();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         digest.update(input.getBytes());
-        String response = new String(Hex.encodeHex(digest.digest()));
-        System.out.println(response.toUpperCase());
+        String hash = new String(Hex.encodeHex(digest.digest()));
+        System.out.println(hash.toUpperCase());
     }
 }

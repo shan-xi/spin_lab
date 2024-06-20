@@ -1,0 +1,144 @@
+{
+	"info": {
+		"_postman_id": "0f165e6c-3670-46da-b865-ce2ad12691ea",
+		"name": "BestPay",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35068575"
+	},
+	"item": [
+		{
+			"name": "payin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"PAY_ID\": \"1001340526093022\",\n  \"PAY_TYPE\": \"FIAT\",\n  \"ORDER_ID\": \"SPIN020406172\",\n  \"RETURN_URL\": \"https://www.google.com\",\n  \"HASH\": \"5FDC65800560B403E04CFA7793D14FE08AD99A98955CE05A13F79923D384C97E\",\n  \"CUST_NAME\": \"spin\",\n  \"CUST_FIRST_NAME\": \"spin\",\n  \"CUST_LAST_NAME\": \"liao\",\n  \"CUST_STREET_ADDRESS1\": \"taiwan\",\n  \"CUST_CITY\": \"taipei\",\n  \"CUST_STATE\": \"taipei\",\n  \"CUST_COUNTRY\": \"taiwan\",\n  \"CUST_ZIP\": \"110\",\n  \"CUST_PHONE\": \"12345678\",\n  \"CUST_EMAIL\": \"spin.liso@btse.com\",\n  \"AMOUNT\": \"30000\",\n  \"TXNTYPE\": \"SALE\",\n  \"CURRENCY_CODE\": \"356\",\n  \"PRODUCT_DESC\": \"test\",\n  \"PAYMENT_TYPE\": \"UP\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/crmws/api/v1/payin/s2s/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"crmws",
+						"api",
+						"v1",
+						"payin",
+						"s2s",
+						"payment"
+					],
+					"query": [
+						{
+							"key": "PAY_ID",
+							"value": "1001340526093022",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "payment transaction status query",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"PAY_ID\":\"1001340526093022\",\n\"ORDER_ID\":\"SPIN020406172\",\n\"TXNTYPE\":\"STATUS\",\n\"HASH\":\"A3097C8B28D22786CFFB1466EC1340577CB1CAE98953E31577A57C3A277F36D1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pgws/transact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pgws",
+						"transact"
+					]
+				},
+				"description": "http://localhost:8080/pgws/transact"
+			},
+			"response": []
+		},
+		{
+			"name": "payout transaction status query",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"PAY_ID\":\"1001340526093022\",\n\"ORDER_ID\":\"SPIN20240618PO9\",\n\"TXNTYPE\":\"PO_STATUS\",\n\"HASH\":\"D284CD953B88350F8AC11A9EB76727637DDA70E73D768BF48E9B3B69DFBE5ED1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pgws/transact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pgws",
+						"transact"
+					]
+				},
+				"description": "http://localhost:8080/pgws/transact"
+			},
+			"response": []
+		},
+		{
+			"name": "payout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"PAY_ID\":\"1001340526093022\",\n    \"ENCDATA\":\"+FqRbsKEF84fNS6INRIAYHK/R++jx1BL0+BfA9sCWLvMkyF2zxv4xzVmqXzJ9+ioxkHd+R1iKkL8aeJayh6iKyaPqfwVLcjJdo8qyNE9cYgM9DW/4SfiucWOYDxTXrBzNznwNIwXRgVCcjaI9uFIP/BuSWodBHTEZcT8IiWRkv7e3GXX7sCGfFjvgF/yWY2NCMbuaBwE1rSiVEY7p9yTURFKILro7hjyuooGLn3zzu88QSUvnPzF9YQj0JrpVKTaKwmc9rN/M2ts4uRNVOTXewWDU3SbIpSTbigLorsTotrZJeA2AdI/jCFFA5ScUJQmwUK/KU6QtH4L06ZpdEb/IXapAjAYXC8MZJUVqKrwqvzIKtDCMtVIelqgBuftffSZM3GMNTPX+YQcsuu7Qd9zphdXX3loV173rx46xNtMzOJtFJr+XixPGBKNWdjGm5ylsSZrv0/DMvfYatnW3s18a2KYU9ukJPz3C06Y+wugiUR/fjH6L9HkzxFNF1fTw6Y9PT3j1BCjrWOH+5kGQTlVyPB45XTxEw8u268OTIbePjM\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/pgws/api/v1/rest/transaction/payout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pgws",
+						"api",
+						"v1",
+						"rest",
+						"transaction",
+						"payout"
+					]
+				},
+				"description": "http://localhost:8080/pgws/api/v1/rest/transaction/payout"
+			},
+			"response": []
+		}
+	]
+}
