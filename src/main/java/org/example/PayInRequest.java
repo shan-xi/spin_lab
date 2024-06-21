@@ -24,12 +24,12 @@ public class PayInRequest {
         treeMap.put("CUST_ZIP", "110");
         treeMap.put("CUST_PHONE", "12345678");
         treeMap.put("CUST_EMAIL", "spin.liso@btse.com");
-        treeMap.put("AMOUNT", "30000");
+        treeMap.put("AMOUNT", "10000");
         treeMap.put("TXNTYPE", "SALE");
         treeMap.put("CURRENCY_CODE", "356");
         treeMap.put("PRODUCT_DESC", "test");
-        treeMap.put("ORDER_ID", "SPIN020406172");
-        treeMap.put("RETURN_URL", "https://www.google.com");
+        treeMap.put("ORDER_ID", "SPIN02040620PI8");
+        treeMap.put("RETURN_URL", "http://localhost:8081/payInCallBack");
         treeMap.put("PAYMENT_TYPE", "UP");
         StringBuilder allFields = new StringBuilder();
         for (String key : treeMap.keySet()) {
