@@ -28,7 +28,15 @@ public class PayOutTransactionStatusQueryRequestHash {
         String input  = allFields.toString();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
         digest.update(input.getBytes());
-        String response = new String(Hex.encodeHex(digest.digest()));
-        System.out.println(response.toUpperCase());
+        String response = new String(Hex.encodeHex(digest.digest(), false));
+        System.out.println(response);
     }
 }
+/**
+ * {
+ * "PAY_ID":"1001340526093022",
+ * "ORDER_ID":"SPIN20240619P1",
+ * "TXNTYPE":"PO_STATUS",
+ * "HASH":"C98F7B709AB6C0FB4DF9EA2DB858EC14DE41498159CF28F5B12B1869EC234C73"
+ * }
+ */

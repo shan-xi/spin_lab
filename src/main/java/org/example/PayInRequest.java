@@ -1,5 +1,6 @@
 package org.example;
 
+import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Hex;
 
 import java.security.MessageDigest;
@@ -11,6 +12,30 @@ public class PayInRequest {
     public static void main(String[] args) throws NoSuchAlgorithmException {
         String payId = "1001340526093022";
         String salt = "473531b173db4371";
+        Map<String, String> treeMap = getParameterMap(payId);
+        StringBuilder allFields = new StringBuilder();
+        for (String key : treeMap.keySet()) {
+            allFields.append("~");
+            allFields.append(key);
+            allFields.append("=");
+            allFields.append(treeMap.get(key));
+        }
+        allFields.deleteCharAt(0); // Remove first FIELD_SEPARATOR
+        allFields.append(salt);
+
+        String input  = allFields.toString();
+        MessageDigest digest = MessageDigest.getInstance("SHA-256");
+        digest.update(input.getBytes());
+        String hash = new String(Hex.encodeHex(digest.digest(), false));
+
+        treeMap.put("HASH", hash);
+
+        Gson gson = new Gson();
+        String json = gson.toJson(treeMap);
+        System.out.println(json);
+    }
+
+    private static Map<String, String> getParameterMap(String payId) {
         Map<String, String> treeMap = new TreeMap<>();
         treeMap.put("PAY_ID", payId);
         treeMap.put("PAY_TYPE", "FIAT");
@@ -28,23 +53,9 @@ public class PayInRequest {
         treeMap.put("TXNTYPE", "SALE");
         treeMap.put("CURRENCY_CODE", "356");
         treeMap.put("PRODUCT_DESC", "test");
-        treeMap.put("ORDER_ID", "SPIN02040620PI8");
-        treeMap.put("RETURN_URL", "http://localhost:8081/payInCallBack");
+        treeMap.put("ORDER_ID", "SPIN02040621PI2");
+        treeMap.put("RETURN_URL", "https://localhost:8443/payInCallBack");
         treeMap.put("PAYMENT_TYPE", "UP");
-        StringBuilder allFields = new StringBuilder();
-        for (String key : treeMap.keySet()) {
-            allFields.append("~");
-            allFields.append(key);
-            allFields.append("=");
-            allFields.append(treeMap.get(key));
-        }
-        allFields.deleteCharAt(0); // Remove first FIELD_SEPARATOR
-        allFields.append(salt);
-        System.out.println(allFields);
-        String input  = allFields.toString();
-        MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update(input.getBytes());
-        String hash = new String(Hex.encodeHex(digest.digest()));
-        System.out.println(hash.toUpperCase());
+        return treeMap;
     }
 }
