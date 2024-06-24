@@ -5,6 +5,9 @@ import org.apache.commons.codec.binary.Hex;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -53,7 +56,9 @@ public class PayInRequest {
         treeMap.put("TXNTYPE", "SALE");
         treeMap.put("CURRENCY_CODE", "356");
         treeMap.put("PRODUCT_DESC", "test");
-        treeMap.put("ORDER_ID", "SPIN02040621PI2");
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddhhmmss");
+        treeMap.put("ORDER_ID", "SPINPI"+currentDateTime.format(formatter));
         treeMap.put("RETURN_URL", "https://localhost:8443/payInCallBack");
         treeMap.put("PAYMENT_TYPE", "UP");
         return treeMap;
