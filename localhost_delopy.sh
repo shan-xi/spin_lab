@@ -1,20 +1,21 @@
 #!/bin/bash
 
 # Source directory
-SOURCE_DIR="/Users/spin.liao/workspace-artemis-main/admin/artemis-main"
+ADMIN_SOURCE_DIR="/Users/spin.liao/workspace_btse/repo/bp-admin"
+MERCHANT_SOURCE_DIR="/Users/spin.liao/workspace_btse/repo/bp-merchant"
 
 # Destination directory
-DEST_DIR="/Users/spin.liao/workspace/bppay/apache-tomcat-8.5.100/webapps"
+DEST_DIR="/Users/spin.liao/workspace_btse/tool/apache-tomcat-8.5.100/webapps"
 
 # List of files to copy
 declare -a files=(
-  "$SOURCE_DIR/pay10-crm/build/libs/crm.war"
-  "$SOURCE_DIR/pay10-crm-ws/build/libs/crmws.war"
-  "$SOURCE_DIR/pay10-crypto/build/libs/crypto.war"
-  "$SOURCE_DIR/pay10-pg-ui/build/libs/pgui.war"
-  "$SOURCE_DIR/pay10-pg-ws/build/libs/pgws.war"
-  "$SOURCE_DIR/pay10-notification-email/build/libs/email.war"
-  "$SOURCE_DIR/pay10-crm/build/libs/crm-merchant.war"
+  "$ADMIN_SOURCE_DIR/pay10-crm/build/libs/crm.war"
+  "$ADMIN_SOURCE_DIR/pay10-crm-ws/build/libs/crmws.war"
+  "$ADMIN_SOURCE_DIR/pay10-crypto/build/libs/crypto.war"
+  "$ADMIN_SOURCE_DIR/pay10-pg-ui/build/libs/pgui.war"
+  "$ADMIN_SOURCE_DIR/pay10-pg-ws/build/libs/pgws.war"
+  "$ADMIN_SOURCE_DIR/pay10-notification-email/build/libs/email.war"
+  "$MERCHANT_SOURCE_DIR/pay10-crm/build/libs/crm-merchant.war"
 )
 
 # Loop through files and copy each one
