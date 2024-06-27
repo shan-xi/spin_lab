@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Source directory
-ADMIN_SOURCE_DIR="/Users/spin.liao/workspace_btse/repo/bp-admin"
-MERCHANT_SOURCE_DIR="/Users/spin.liao/workspace_btse/repo/bp-merchant"
+ADMIN_SOURCE_DIR="$HOME/workspace_btse/repo/bp-admin"
+MERCHANT_SOURCE_DIR="$HOME/workspace_btse/repo/bp-merchant"
 
 # Destination directory
-DEST_DIR="/Users/spin.liao/workspace_btse/tool/apache-tomcat-8.5.100/webapps"
+DEST_DIR="$HOME/workspace_btse/tool/apache-tomcat-8.5.100/webapps"
 
 # List of files to copy
 declare -a files=(
