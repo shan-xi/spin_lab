@@ -3,39 +3,52 @@ package org.example;
 import com.google.gson.Gson;
 import org.apache.commons.codec.binary.Hex;
 
+import javax.crypto.BadPaddingException;
+import javax.crypto.IllegalBlockSizeException;
+import javax.crypto.NoSuchPaddingException;
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class PayInRequest {
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        String payId = "1001340526093022";
-        String salt = "473531b173db4371";
+public class MHPayInRequest {
+    public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
+        String payId = "1000140627123003";
+        String salt = "bf0e59087c50487d";
         Map<String, String> treeMap = getParameterMap(payId);
         StringBuilder allFields = new StringBuilder();
         for (String key : treeMap.keySet()) {
-            allFields.append("~");
             allFields.append(key);
             allFields.append("=");
             allFields.append(treeMap.get(key));
+            allFields.append("~");
         }
-        allFields.deleteCharAt(0); // Remove first FIELD_SEPARATOR
+        String encStringWoHash = allFields.toString();
+
+        int tildeLastCount = allFields.lastIndexOf("~");
+        allFields.replace(tildeLastCount, tildeLastCount + 1, "");
         allFields.append(salt);
 
-        String input  = allFields.toString();
+        String createHash  = allFields.toString();
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        digest.update(input.getBytes());
-        String hash = new String(Hex.encodeHex(digest.digest(), false));
+        digest.update(createHash.getBytes());
+        String generatedHash = new String(Hex.encodeHex(digest.digest(), false));
 
-        treeMap.put("HASH", hash);
-
+        String encString = encStringWoHash + "HASH=" + generatedHash;
+//        String encString = encStringWoHash;
+        String encData = EncDataUtil.encrypt(encString);
         Gson gson = new Gson();
-        String json = gson.toJson(treeMap);
+        Map<String, String> jsonMap = new TreeMap<>();
+        jsonMap.put("PAY_ID", payId);
+        jsonMap.put("ENCDATA", encData);
+        String json = gson.toJson(jsonMap);
         System.out.println(json);
+        System.out.println(encData);
     }
 
     private static Map<String, String> getParameterMap(String payId) {
@@ -49,7 +62,7 @@ public class PayInRequest {
         treeMap.put("CUST_CITY", "taipei");
         treeMap.put("CUST_STATE", "taipei");
         treeMap.put("CUST_COUNTRY", "taiwan");
-        treeMap.put("CUST_ZIP", "110");
+        treeMap.put("CUST_ZIP", "110001");
         treeMap.put("CUST_PHONE", "12345678");
         treeMap.put("CUST_EMAIL", "spin.liso@btse.com");
         treeMap.put("AMOUNT", "10000");
@@ -60,7 +73,13 @@ public class PayInRequest {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddhhmmss");
         treeMap.put("ORDER_ID", "SPINPI"+currentDateTime.format(formatter));
         treeMap.put("RETURN_URL", "https://localhost:8443/payInCallBack");
-        treeMap.put("PAYMENT_TYPE", "UP");
+        treeMap.put("PAYMENT_TYPE", "UP"); // UP NB WL CARD
+        treeMap.put("PAYER_ADDRESS", "abc@ybl");
+        treeMap.put("MOP_TYPE", "CARD");
+        treeMap.put("CARD_HOLDER_NAME", "spin liao");
+        treeMap.put("CARD_NUMBER", "4539148803436467");
+        treeMap.put("CARD_EXP_DT", "072025");
+        treeMap.put("CVV", "123");
         return treeMap;
     }
 }
