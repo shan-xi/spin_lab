@@ -18,8 +18,8 @@ import java.util.TreeMap;
 
 public class MHPayInRequest {
     public static void main(String[] args) throws NoSuchAlgorithmException, InvalidAlgorithmParameterException, NoSuchPaddingException, UnsupportedEncodingException, IllegalBlockSizeException, BadPaddingException, InvalidKeyException {
-        String payId = "1000140627123003";
-        String salt = "bf0e59087c50487d";
+        String payId = Config.payId;
+        String salt = Config.salt;
         Map<String, String> treeMap = getParameterMap(payId);
         StringBuilder allFields = new StringBuilder();
         for (String key : treeMap.keySet()) {
@@ -56,13 +56,13 @@ public class MHPayInRequest {
         treeMap.put("PAY_ID", payId);
         treeMap.put("PAY_TYPE", "FIAT");
         treeMap.put("CUST_NAME", "spin");
-        treeMap.put("CUST_FIRST_NAME", "spin");
-        treeMap.put("CUST_LAST_NAME", "liao");
-        treeMap.put("CUST_STREET_ADDRESS1", "taiwan");
-        treeMap.put("CUST_CITY", "taipei");
-        treeMap.put("CUST_STATE", "taipei");
-        treeMap.put("CUST_COUNTRY", "taiwan");
-        treeMap.put("CUST_ZIP", "110001");
+//        treeMap.put("CUST_FIRST_NAME", "spin");
+//        treeMap.put("CUST_LAST_NAME", "liao");
+//        treeMap.put("CUST_STREET_ADDRESS1", "taiwan");
+//        treeMap.put("CUST_CITY", "taipei");
+//        treeMap.put("CUST_STATE", "taipei");
+//        treeMap.put("CUST_COUNTRY", "taiwan");
+//        treeMap.put("CUST_ZIP", "110001");
         treeMap.put("CUST_PHONE", "12345678");
         treeMap.put("CUST_EMAIL", "spin.liso@btse.com");
         treeMap.put("AMOUNT", "10000");
@@ -75,11 +75,11 @@ public class MHPayInRequest {
         treeMap.put("RETURN_URL", "https://localhost:8443/payInCallBack");
         treeMap.put("PAYMENT_TYPE", "UP"); // UP NB WL CARD
         treeMap.put("PAYER_ADDRESS", "abc@ybl");
-        treeMap.put("MOP_TYPE", "CARD");
-        treeMap.put("CARD_HOLDER_NAME", "spin liao");
-        treeMap.put("CARD_NUMBER", "4539148803436467");
-        treeMap.put("CARD_EXP_DT", "072025");
-        treeMap.put("CVV", "123");
+        treeMap.put("MOP_TYPE", "UP"); // 1030
+//        treeMap.put("CARD_HOLDER_NAME", "spin liao");
+//        treeMap.put("CARD_NUMBER", "4539148803436467");
+//        treeMap.put("CARD_EXP_DT", "072025");
+//        treeMap.put("CVV", "123");
         return treeMap;
     }
 }
