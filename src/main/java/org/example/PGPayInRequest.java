@@ -118,18 +118,22 @@ public class PGPayInRequest {
         treeMap.put("CUST_CITY", "taipei");
         treeMap.put("CUST_STATE", "taipei");
         treeMap.put("CUST_COUNTRY", "taiwan");
-        treeMap.put("CUST_ZIP", "110");
-        treeMap.put("CUST_PHONE", "12345678");
+        treeMap.put("CUST_ZIP", "110001");
+        treeMap.put("CUST_PHONE", "9454243567");
         treeMap.put("CUST_EMAIL", "spin.liso@btse.com");
-        treeMap.put("AMOUNT", "10000");
+        treeMap.put("AMOUNT", "10000000");
+//        treeMap.put("AMOUNT", "2000000");
         treeMap.put("TXNTYPE", "SALE");
-        treeMap.put("CURRENCY_CODE", "356");
+//        treeMap.put("CURRENCY_CODE", "978");//840
+//        treeMap.put("CURRENCY_CODE", "356");
+        treeMap.put("CURRENCY_CODE", "704");
+//        treeMap.put("CURRENCY_CODE", "608");
         treeMap.put("PRODUCT_DESC", "test");
         LocalDateTime currentDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddhhmmss");
         treeMap.put("ORDER_ID", "SPINPI" + currentDateTime.format(formatter));
         treeMap.put("RETURN_URL", "https://localhost:8443/payInCallBack");
-        treeMap.put("PAYMENT_TYPE", "UP"); // UP NB
+        treeMap.put("PAYMENT_TYPE", "NB"); // UP NB
         return treeMap;
     }
 

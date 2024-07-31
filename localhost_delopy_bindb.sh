@@ -9,7 +9,7 @@ DEST_DIR="$HOME/workspace_btse/tool/apache-tomcat-8.5.100/webapps"
 # Run Gradle build
 echo "Running Gradle build..."
 cd "$ADMIN_SOURCE_DIR"
-gradle pay10-crm-ws:clean pay10-crm-ws:build -x test
+gradle pay10-bindb:clean pay10-bindb:build -x test
 if [ $? -ne 0 ]; then
   echo "Gradle build failed. Exiting."
   exit 1
@@ -18,7 +18,7 @@ echo "Gradle build completed successfully."
 
 # List of files to copy
 declare -a files=(
-  "$ADMIN_SOURCE_DIR/pay10-crm-ws/build/libs/crmws.war"
+  "$ADMIN_SOURCE_DIR/pay10-bindb/build/libs/bindb.war"
 )
 
 # Loop through files and copy each one

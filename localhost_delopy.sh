@@ -15,6 +15,7 @@ declare -a files=(
   "$ADMIN_SOURCE_DIR/pay10-pg-ui/build/libs/pgui.war"
   "$ADMIN_SOURCE_DIR/pay10-pg-ws/build/libs/pgws.war"
   "$ADMIN_SOURCE_DIR/pay10-notification-email/build/libs/email.war"
+  "$ADMIN_SOURCE_DIR/pay10-bindb/build/libs/bindb.war"
   "$MERCHANT_SOURCE_DIR/pay10-crm/build/libs/crm-merchant.war"
 )
 
